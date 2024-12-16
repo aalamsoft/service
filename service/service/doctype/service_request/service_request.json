@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:SERV-{MM}-{YYYY}-{#####}",
  "creation": "2024-12-12 12:21:54.052005",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -8,10 +9,21 @@
   "customer_details_section",
   "customer",
   "date",
+  "warranty_available",
+  "service_status",
   "column_break_bmnj",
   "address",
-  "item_details_section",
-  "service_item"
+  "service_item_details_section",
+  "service_item",
+  "supplier_details_section",
+  "supplier",
+  "repair_details_section",
+  "damaged_part",
+  "column_break_kvjv",
+  "work",
+  "additional_info_tab",
+  "remarks",
+  "amended_from"
  ],
  "fields": [
   {
@@ -22,14 +34,17 @@
   {
    "fieldname": "customer",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Customer",
    "options": "Customer"
   },
   {
    "fetch_from": "customer.primary_address",
    "fieldname": "address",
-   "fieldtype": "Small Text",
-   "label": "Address"
+   "fieldtype": "Text",
+   "label": "Address",
+   "max_height": "200px"
   },
   {
    "fieldname": "column_break_bmnj",
@@ -38,26 +53,94 @@
   {
    "fieldname": "date",
    "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Date"
   },
   {
-   "fieldname": "item_details_section",
+   "fieldname": "service_status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Service Status",
+   "options": "\nSending to Vendor\nGetting Spares from Vendor\nSending Damaged parts to Vendor\nRepairing by Ourselves"
+  },
+  {
+   "default": "0",
+   "fieldname": "warranty_available",
+   "fieldtype": "Check",
+   "label": "Warranty Available"
+  },
+  {
+   "fieldname": "service_item_details_section",
    "fieldtype": "Section Break",
-   "label": "Item Details"
+   "label": "Service Item Details"
   },
   {
    "fieldname": "service_item",
    "fieldtype": "Table",
    "label": "Service Item",
-   "options": "Sales Order Item"
+   "options": "Service Item"
+  },
+  {
+   "fieldname": "supplier_details_section",
+   "fieldtype": "Section Break",
+   "label": "Supplier Details"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "repair_details_section",
+   "fieldtype": "Section Break",
+   "label": "Repair Details"
+  },
+  {
+   "fieldname": "damaged_part",
+   "fieldtype": "Data",
+   "label": "Damaged Part"
+  },
+  {
+   "fieldname": "column_break_kvjv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "work",
+   "fieldtype": "Select",
+   "label": "Work",
+   "options": "Repair\nReplacement"
+  },
+  {
+   "fieldname": "additional_info_tab",
+   "fieldtype": "Tab Break",
+   "label": "Additional Info"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Service Request",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-12-12 15:32:19.728093",
+ "modified": "2024-12-16 10:53:02.269364",
  "modified_by": "Administrator",
  "module": "Service",
  "name": "Service Request",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
